@@ -1,0 +1,16 @@
+{
+  "name": "BookaBook",
+  "version": "0.1.0",
+  "main": "server.js",
+  "dependencies": {
+    "express": "latest",
+    "mongoose": "latest",
+    "async": "0.2.10",
+    "body-parser": "latest",
+    "morgan": "latest",
+    "jsonwebtoken": "latest",
+    "busboy": "latest",
+    "crypto": "latest",
+    "node-uuid": "latest"
+  }
+}
