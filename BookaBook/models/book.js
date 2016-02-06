@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var Book = require('user.js');
+var Book = require('./user.js');
 
 var BookSchema = new Schema({
   name: {type: String, required: true},

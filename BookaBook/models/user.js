@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var crypto = require('crypto');
 var uuid = require('node-uuid');
 var Schema = mongoose.Schema;
-var Book = require('book.js');
+var Book = require('./book.js');
 
 var UserSchema = new Schema({
   phoneNum: {type: Number, required: true, unique: true},
@@ -14,25 +14,35 @@ var UserSchema = new Schema({
     index: '2d'      // create the geospatial index
   },
   ownedBooks: [{type: mongoose.Schema.Types.ObjectId, ref: 'Book'}],
-  wishListBooks: [
+  wishListBooks: [{
     status: {type: String, required: true, default: "wish"}, // would change between wish and request
     peer: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    book: {type: mongoose.Schema.Types.ObjectId, ref: 'Book'}
-  ],
-  requestedBooks: [
+    book: {type: mongoose.Schema.Types.ObjectId, ref: 'Book'},
+    createdOn: {type: Date, default: new Date()}
+  }],
+  requestedBooks: [{
     status: {type: String, required: true, default: "acknowledged"}, // would change between acknowledged and accepted
     peer: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    book: {type: mongoose.Schema.Types.ObjectId, ref: 'Book'}
-  ],
-  transactionBooks: [
+    book: {type: mongoose.Schema.Types.ObjectId, ref: 'Book'},
+    createdOn: {type: Date, default: new Date()}
+  }],
+  transactionBooks: [{
     status: {type: String, required: true, default: "lent"}, // would change between lent, borrowed, collected and return
     peer: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    book: {type: mongoose.Schema.Types.ObjectId, ref: 'Book'}
-  ],
-  recommendedBooks: [
+    book: {type: mongoose.Schema.Types.ObjectId, ref: 'Book'},
+    createdOn: {type: Date, default: new Date()}
+  }],
+  prevTransactionBooks: [{
+    status: {type: String, required: true, default: "completed"}, // would change between completed and pending
+    peer: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    book: {type: mongoose.Schema.Types.ObjectId, ref: 'Book'},
+    createdOn: {type: Date, default: new Date()}
+  }],
+  recommendedBooks: [{
     peer: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     book: {type: mongoose.Schema.Types.ObjectId, ref: 'Book'}
-  ],
+  }],
+  lastActive: {type: Date, default: new Date()},
   createdOn: {type: Date, default: new Date()}
 });
 

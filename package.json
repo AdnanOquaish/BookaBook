@@ -11,6 +11,7 @@
     "jsonwebtoken": "latest",
     "busboy": "latest",
     "crypto": "latest",
-    "node-uuid": "latest"
+    "node-uuid": "latest",
+    "moment": "latest"
   }
 }
